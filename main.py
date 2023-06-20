@@ -19,13 +19,21 @@ current_price = header_info.find("div", class_="My(6px) Pos(r) smartphone_Mt(6px
 
 #Info table filtering
 quote_summary = soup.find_all("div", id="quote-summary")[0]
-table = quote_summary.find("table").find_all("tr")
+table_left = quote_summary.find_all("table")[0].find_all("tr")
+table_right = quote_summary.find_all("table")[1].find_all("tr")
 
 print(stock_title)
 print(current_price)
 
 #Left side table data extraction
 for index in range(0,8):
-    heading = table[index].find("span").get_text()
-    value = table[index].find_all("td")[1].get_text()
+    heading = table_left[index].find("span").get_text()
+    value = table_left[index].find_all("td")[1].get_text()
     print(heading + ": " + value)
+
+#Right side table data extraction
+for index in range(0,8):
+    heading = table_right[index].find("span").get_text()
+    value = table_right[index].find_all("td")[1].get_text()
+    print(heading + ": " + value)
+
